@@ -1,8 +1,8 @@
 # Steam Analysis
 
-A descriptive analysis of the Steam gaming platform, framed as a hypothetical recommendation report for Ubisoft. The goal: identify what kind of game profile would maximize Ubisoft's chances of breaking through on a platform with 50,000+ titles.
+This project is based on the use of Steam’s dataset relating to its platform. Steam is the most popular online gaming platform on the market, with over 50,000 games available on its platform in the year this dataset was published.
 
-Built with PySpark on Databricks as part of the Jedha Big Data module.
+We will therefore carry out a descriptive analysis simulation for Ubisoft, in order to determine the typical profile of games we would recommend they produce.
 
 ## What the analysis answers
 
@@ -26,32 +26,11 @@ A few things stood out:
 - **Steam is for everyone.** 98.8% of games have no age restriction.
 - **COVID had a clear impact.** Release counts spiked in 2020-2021 with 8,000+ games per year, on top of an existing growth curve that aligned with the global rollout of fiber internet.
 
-## Recommendation for Ubisoft
-
-If the goal is to maximize visibility on Steam given current dynamics:
-
-- Target a price point between $5 and $20
-- No age restriction
-- English required, with German, French, Russian, Chinese, Spanish as secondary options
-- Windows-only is fine; Mac/Linux ports only worth it if the engine handles them automatically (Unity, Unreal)
-- Genre: action-adventure. Action wins on engagement and revenue, adventure has a strong positive review ratio relative to its market share, and combining the two avoids head-on competition with the indie-dominated single-genre segments
-- Strong artistic direction is critical — the main competition is 35,000+ indie games, so a generic AAA aesthetic won't cut through
-
-## Method notes
-
-A few things worth being upfront about:
-
-- **Sales data isn't in the dataset.** Revenue estimates use owner counts × price, which is a proxy, not actual revenue. The relative ranking between genres should be reliable; the absolute numbers shouldn't be trusted.
-- **Review ratios are a popularity proxy.** Without sales data, total reviews (positive + negative) are the best signal we have for engagement. This biases toward games that generate strong reactions.
-- **Outlier handling was minimal.** Some prices in the raw data were stored in dollars instead of cents (66 outliers out of 55,691 entries) and some `required_age` values were clearly wrong (35, 180). These were filtered but not investigated further.
-- **Publisher counts probably overstate small studios.** Some publisher names appear with thousands of releases that look more like aggregator activity than traditional publishing.
-
 ## Environment
 
-This notebook was developed on **Databricks Community Edition** with PySpark. Two consequences for anyone trying to reproduce it:
+This notebook was developed on Databricks Community Edition with PySpark. Two consequences for anyone trying to reproduce it:
 
-- The `display()` calls used throughout are Databricks-specific. In a standard Jupyter setup, you'd need to replace them with `df.show()` or `df.toPandas()`.
-- The dataset is loaded from a Jedha-hosted S3 bucket (`s3://full-stack-bigdata-datasets/Big_Data/Project_Steam/steam_game_output.json`) which isn't publicly accessible. To re-run the analysis you'd need to source a similar Steam dataset (the one on Kaggle by Nik Davis is the closest equivalent) and adjust the read path.
+The entire notebook is available here: https://dbc-b50ed537-d463.cloud.databricks.com/editor/notebooks/2256538333767863?o=2274689051990487
 
 ## Stack
 
@@ -59,4 +38,4 @@ PySpark, Spark SQL, Databricks. Versions in `requirements.txt`.
 
 ## Dataset
 
-Source: Jedha-modified version of a public Steam dataset, originally compiled from the Steam API. Approximately 55,000 entries covering games and other software available on the platform.
+Source: Jedha modified version of a public Steam dataset, originally compiled from the Steam API. Approximately 55,000 entries covering games and other software available on the platform.
